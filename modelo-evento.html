@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Evento - CETI Job de Macêdo Brito</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #2d3748;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .event-details-container {
+            max-width: 900px;
+            margin: 60px auto 100px auto;
+            padding: 0 5%;
+        }
+
+        /* BOTÃO VOLTAR */
+        .back-to-events {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #a6266d;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .back-to-events:hover {
+            text-decoration: underline;
+        }
+
+        /* CABEÇALHO DO EVENTO */
+        .event-main-header h1 {
+            color: #1b4332;
+            font-size: 36px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            line-height: 1.3;
+        }
+
+        .event-subtitle {
+            font-size: 16px;
+            color: #718096;
+            margin: 0 0 40px 0;
+        }
+
+        /* CARD DE INFORMAÇÕES CHAVE (GRID) */
+        .event-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            background-color: #f4f7f5;
+            border-left: 4px solid #1b4332;
+            padding: 25px;
+            margin-bottom: 40px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .info-item label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #718096;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .info-item span {
+            font-size: 16px;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        /* SEÇÃO DE TEXTO EXPLICATIVO */
+        .event-description-section h2 {
+            color: #1b4332;
+            font-size: 22px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        .event-description-section p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #4a5568;
+            text-align: justify;
+        }
+
+        .requirements-list {
+            padding-left: 20px;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+
+        .requirements-list li {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .event-main-header h1 { font-size: 26px; }
+            .event-info-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar" style="background-color: #1b4332;">
+        <div class="logo-area">
+            <div class="school-logo-small"><img src="jobdemacedobritologo_edited.png.png" alt="Logo"></div>
+            <div><span class="nav-logo-title" style="color: white;">Job De Macedo Brito</span></div>
+        </div>
+        <a href="eventos.html" class="btn-nav-login"><i class="fa-solid fa-calendar-days"></i> Ver Agenda</a>
+    </header>
+
+    <main class="event-details-container">
+        
+        <a href="eventos.html" class="back-to-events">
+            <i class="fa-solid fa-arrow-left"></i> Voltar para a lista de eventos
+        </a>
+
+        <article class="event-main-header">
+            <h1>Torneio de tabuleiro (Xadrez, Dama e Ping Pong)</h1>
+            <p class="event-subtitle">Grandes mentes e reflexos rápidos se encontram aqui.</p>
+        </article>
+
+        <section class="event-info-grid">
+            <div class="info-item">
+                <label><i class="fa-regular fa-calendar"></i> Data</label>
+                <span>A ser definida</span>
+            </div>
+            <div class="info-item">
+                <label><i class="fa-regular fa-clock"></i> Horário</label>
+                <span>Turno Contra-tempo</span>
+            </div>
+            <div class="info-item">
+                <label><i class="fa-solid fa-location-dot"></i> Local</label>
+                <span>Pátio Central / Cocal de Telha</span>
+            </div>
+            <div class="info-item">
+                <label><i class="fa-solid fa-users"></i> Público-Alvo</label>
+                <span>Todos os Alunos</span>
+            </div>
+        </section>
+
+        <section class="event-description-section">
+            <h2>Sobre o Evento</h2>
+            <p>O tradicional Torneio de Tabuleiro e Jogos de Mesa do CETI Job de Macêdo Brito tem como objetivo estimular o raciocínio lógico, a concentração, a estratégia e a integração social entre os estudantes das diferentes turmas de Ensino Médio.</p>
+            <p>Este ano, além das clássicas modalidades de Xadrez e Dama, teremos também o dinamismo do Ping Pong (Tênis de Mesa), movimentando tanto a mente quanto a coordenação motora dos participantes.</p>
+
+            <h2>Quem pode participar?</h2>
+            <ul class="requirements-list">
+                <li><strong>Estudantes Matriculados:</strong> Aberto para todos os alunos do 1º, 2º e 3º ano do CETI.</li>
+                <li><strong>Inscrição Prévia:</strong> Para garantir o chaveamento correto, os atletas devem se inscrever na coordenação (ou na aba de inscrições do site) até uma semana antes do torneio.</li>
+                <li><strong>Premiação:</strong> Haverá medalhas para os 1º, 2º e 3º lugares de cada modalidade, além de pontuação extra para as equipes no interclasse.</li>
+            </ul>
+
+            <h2>Dúvidas Frequentes</h2>
+            <p><strong>Preciso levar meu próprio tabuleiro ou raquete?</strong> Não é necessário. A escola fornecerá todo o material oficial para as partidas, mas caso você tenha uma raquete de ping pong de preferência, poderá utilizá-la.</p>
+        </section>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre a Escola - CETI Job De Macedo Brito</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ESTILIZAÇÃO CUSTOMIZADA FIEL ÀS CAPTURAS DE ECRÃ */
+        body {
+            background-color: #ffffff;
+            color: #333333;
+        }
+
+        .section-header-wix {
+            text-align: center;
+            padding: 60px 20px 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-header-wix h1 {
+            color: #1b4332; /* Verde Escuro */
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .section-header-wix p {
+            color: #7a7a7a;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* LAYOUT MOSAICO (SOBRE A ESCOLA) */
+        .wix-mosaic-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mosaic-row {
+            display: flex;
+            width: 100%;
+            min-height: 450px;
+        }
+
+        .mosaic-cell {
+            flex: 1;
+            width: 50%;
+        }
+
+        .mosaic-cell.image-bg {
+            overflow: hidden;
+        }
+
+        .mosaic-cell.image-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .mosaic-cell.text-bg {
+            background-color: #1b4332; /* Fundo Verde Escuro do Wix */
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 10%;
+        }
+
+        .mosaic-cell.text-bg p {
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            opacity: 0.95;
+        }
+
+        /* Lista de Valores */
+        .values-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .values-list li {
+            font-size: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .values-list li::before {
+            content: "•";
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        /* GRELHA DA EQUIPA DIRETÓRIA */
+        .staff-section {
+            padding: 60px 4% 100px 4%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .staff-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .staff-card h3 {
+            color: #333333;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .staff-card p {
+            color: #a6266d; /* Rosa Detalhe para dar destaque aos cargos */
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+
+        /* RESPONSIVIDADE COMPLETA */
+        @media (max-width: 992px) {
+            .staff-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .mosaic-row { flex-direction: column; min-height: auto; }
+            .mosaic-cell { width: 100%; }
+            .mosaic-cell.image-bg { height: 300px; }
+            .mosaic-cell.text-bg { padding: 40px 6%; }
+            .staff-grid { grid-template-columns: repeat(2, 1fr); gap: 30px 15px; }
+            .section-header-wix h1 { font-size: 28px; }
+        }
+
+        @media (max-width: 480px) {
+            .staff-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-line"></div>
+    
+    <header class="navbar">
+        <div class="logo-area">
+            <div class="school-logo-small">
+                <img src="jobdemacedobritologo_edited.png.png" alt="Logo">
+            </div>
+            <div>
+                <span class="nav-logo-title">Job De Macedo Brito</span>
+                <span class="nav-logo-subtitle">Ensino Médio</span>
+            </div>
+        </div>
+        <a href="index.html" class="btn-nav-login"><i class="fa-solid fa-arrow-left"></i> Voltar ao Portal</a>
+    </header>
+
+    <section class="section-header-wix">
+        <h1>Sobre a Escola</h1>
+        <p>A equipa diretiva do CETI Job de Macêdo Brito é formada por profissionais dedicados à construção de uma escola acolhedora, organizada e comprometida com o sucesso dos alunos. Com foco na gestão participativa, trabalha para fortalecer o ensino, valorizar os professores e promover o desenvolvimento integral dos estudantes.</p>
+    </section>
+
+    <div class="wix-mosaic-container">
+        <div class="mosaic-row">
+            <div class="mosaic-cell image-bg">
+                <img src="esperimentos.png.jpg" alt="Alunos no laboratório">
+            </div>
+            <div class="mosaic-cell text-bg">
+                <p>O CETI Job de Macêdo Brito é uma escola pública estadual localizada em Cocal de Telha - PI, que oferece o Ensino Médio regular e a Educação de Jovens e Adultos (EJA), comprometida com a formação integral dos estudantes, a escola busca oferecer um ensino de qualidade, inclusivo e cidadão.</p>
+                <p>O CETI Job de Macêdo Brito é uma escola pública estadual localizada em Cocal de Telha - PI, que oferece o Ensino Médio regular e a Educação de Jovens e Adultos (EJA). Comprometida com a formação integral dos estudantes, a escola busca oferecer um ensino de qualidade, inclusivo e cidadão.</p>
+            </div>
+        </div>
+
+        <div class="mosaic-row" style="flex-direction: row-reverse;">
+            <div class="mosaic-cell image-bg">
+                <img src="dama.png.jpg" alt="Alunos jogando xadrez">
+            </div>
+            <div class="mosaic-cell text-bg">
+                <ul class="values-list">
+                    <li>Gentileza</li>
+                    <li>Respeito</li>
+                    <li>Responsabilidade</li>
+                    <li>Dedicação</li>
+                    <li>Diversão</li>
+                    <li>Missão</li>
+                    <li>Valores</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="staff-section">
+        <div class="section-header-wix" style="padding-top: 20px;">
+            <h1 style="font-size: 34px;">Equipe Diretória</h1>
+            <p>A equipe diretiva do CETI Job de Macêdo Brito é formada por profissionais dedicados à construção de uma escola acolhedora, organizada e comprometida com o sucesso dos alunos. Com foco na gestão participativa, trabalha para fortalecer o ensino, valorizar os professores e promover o desenvolvimento integral dos estudantes.</p>
+        </div>
+
+        <div class="staff-grid">
+            <div class="staff-card">
+                <h3>Meire Lúcia</h3>
+                <p>Diretora</p>
+            </div>
+            <div class="staff-card">
+                <h3>Fabíola</h3>
+                <p>Coordenadora</p>
+            </div>
+            <div class="staff-card">
+                <h3>Ildene</h3>
+                <p>Secretária</p>
+            </div>
+            <div class="staff-card">
+                <h3>Bruna</h3>
+                <p>Bibliotecária</p>
+            </div>
+
+            <div class="staff-card">
+                <h3>Cleison</h3>
+                <p>Adm. Financeiro</p>
+            </div>
+            <div class="staff-card">
+                <h3>Gilmara</h3>
+                <p>Espanhol, Cultura e Arte</p>
+            </div>
+            <div class="staff-card">
+                <h3>Jaqueline</h3>
+                <p>Inglês</p>
+            </div>
+            <div class="staff-card">
+                <h3>Vânia</h3>
+                <p>Geografia</p>
+            </div>
+
+            <div class="staff-card">
+                <h3>Denis</h3>
+                <p>História e Filosofia</p>
+            </div>
+            <div class="staff-card">
+                <h3>Érika</h3>
+                <p>Biologia e Geografia</p>
+            </div>
+            <div class="staff-card">
+                <h3>Vanessa</h3>
+                <p>Português</p>
+            </div>
+            <div class="staff-card">
+                <h3>Josean</h3>
+                <p>Desenvolvimento de Sistema</p>
+            </div>
+
+            <div class="staff-card">
+                <h3>Wemerson</h3>
+                <p>Desenvolvimento de Sistema</p>
+            </div>
+            <div class="staff-card">
+                <h3>Julyu</h3>
+                <p>Desenvolvimento de Sistema</p>
+            </div>
+            <div class="staff-card">
+                <h3>Euclides</h3>
+                <p>Matemática</p>
+            </div>
+            <div class="staff-card">
+                <h3>Joaquim</h3>
+                <p>Matemática</p>
+            </div>
+
+            <div class="staff-card">
+                <h3>Taís</h3>
+                <p>Educação Física</p>
+            </div>
+            <div class="staff-card">
+                <h3>Ermeson</h3>
+                <p>Inteligência Artificial e Educação no Trânsito</p>
+            </div>
+            <div class="staff-card">
+                <h3>P. Henrique</h3>
+                <p>Física</p>
+            </div>
+            <div class="staff-card">
+                <h3>Marcos</h3>
+                <p>Química</p>
+            </div>
+        </div>
+    </section>
+    <button onclick="voltarAoTopo()" id="btnTopo" title="Voltar ao início"><i class="fa-solid fa-arrow-up"></i></button>
+</body>
+</html>

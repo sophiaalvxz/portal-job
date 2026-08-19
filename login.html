@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso ao Portal - CETI Job De Macedo Brito</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-box {
+            max-width: 400px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-family: sans-serif;
+        }
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: none;
+            font-weight: bold;
+            cursor: pointer;
+            color: #718096;
+        }
+        .tab-btn.active {
+            color: #1b4332;
+            border-bottom: 3px solid #1b4332;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2d3748;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        .btn-enviar {
+            width: 100%;
+            padding: 12px;
+            background: #1b4332;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .mensagem {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <div class="tab-buttons">
+            <button class="tab-btn active" onclick="mostrarAba('login')">Entrar</button>
+            <button class="tab-btn" onclick="mostrarAba('cadastro')">Primeiro Acesso (Criar Senha)</button>
+        </div>
+
+        <form id="form-login" onsubmit="realizarLogin(event)">
+            <h3>Acessar o Portal</h3>
+            <div class="form-group">
+                <label>Usuário / CPF:</label>
+                <input type="text" id="login-usuario" required placeholder="Digite seu usuário">
+            </div>
+            <div class="form-group">
+                <label>Senha:</label>
+                <input type="password" id="login-senha" required placeholder="Digite sua senha">
+            </div>
+            <button type="submit" class="btn-enviar">Entrar no Sistema</button>
+        </form>
+
+        <form id="form-cadastro" style="display: none;" onsubmit="realizarCadastro(event)">
+            <h3>Criar Minha Senha</h3>
+            <div class="form-group">
+                <label>Defina seu Usuário / CPF:</label>
+                <input type="text" id="cad-usuario" required placeholder="Ex: 12345678900">
+            </div>
+            <div class="form-group">
+                <label>Crie uma Senha:</label>
+                <input type="password" id="cad-senha" required placeholder="Digite uma senha forte">
+            </div>
+            <button type="submit" class="btn-enviar">Cadastrar e Salvar Senha</button>
+        </form>
+
+        <div id="mensagem" class="mensagem"></div>
+    </div>
+
+    <script>
+        // Função para alternar as abas na tela
+        function mostrarAba(aba) {
+            const formLogin = document.getElementById('form-login');
+            const formCadastro = document.getElementById('form-cadastro');
+            const btns = document.querySelectorAll('.tab-btn');
+            const msg = document.getElementById('mensagem');
+            msg.innerText = '';
+
+            if (aba === 'login') {
+                formLogin.style.display = 'block';
+                formCadastro.style.display = 'none';
+                btns[0].classList.add('active');
+                btns[1].classList.remove('active');
+            } else {
+                formLogin.style.display = 'none';
+                formCadastro.style.display = 'block';
+                btns[0].classList.remove('active');
+                btns[1].classList.add('active');
+            }
+        }
+
+        // Função 1: Salva a senha no Primeiro Acesso
+        function realizarCadastro(event) {
+            event.preventDefault(); // Impede a página de recarregar
+            
+            const usuario = document.getElementById('cad-usuario').value.trim();
+            const senha = document.getElementById('cad-senha').value.trim();
+            const msg = document.getElementById('mensagem');
+
+            // Salva a informação na memória do navegador (localStorage)
+            localStorage.setItem('usuario_registrado', usuario);
+            localStorage.setItem('senha_registrada', senha);
+
+            msg.style.color = 'green';
+            msg.innerText = '✅ Senha criada com sucesso! Agora clique na aba "Entrar".';
+
+            // Limpa o formulário de cadastro
+            document.getElementById('form-cadastro').reset();
+        }
+
+        // Função 2: Confere se a senha batida é igual à salva
+        function realizarLogin(event) {
+            event.preventDefault();
+
+            const usuarioDigitado = document.getElementById('login-usuario').value.trim();
+            const senhaDigitada = document.getElementById('login-senha').value.trim();
+            const msg = document.getElementById('mensagem');
+
+            // Busca os dados armazenados no navegador
+            const usuarioSalvo = localStorage.getItem('usuario_registrado');
+            const senhaSalva = localStorage.getItem('senha_registrada');
+
+            if (!usuarioSalvo || !senhaSalva) {
+                msg.style.color = 'red';
+                msg.innerText = '❌ Nenhum usuário cadastrado ainda! Clique em "Primeiro Acesso" primeiro.';
+            } else if (usuarioDigitado === usuarioSalvo && senhaDigitada === senhaSalva) {
+                msg.style.color = 'green';
+                msg.innerText = '🎉 Login realizado com sucesso! Redirecionando...';
+                
+                // Redireciona para o início do site após 1.5 segundos
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } else {
+                msg.style.color = 'red';
+                msg.innerText = '❌ Usuário ou Senha incorretos!';
+            }
+        }
+    </script>
+</body>
+</html>

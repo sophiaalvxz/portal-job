@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrícula Online - CETI Job de Macêdo Brito</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f4f7f5;
+            color: #2d3748;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .enrollment-container {
+            max-width: 700px;
+            margin: 50px auto 100px auto;
+            padding: 0 4%;
+        }
+
+        .enrollment-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .enrollment-header h1 {
+            color: #1b4332;
+            font-size: 32px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .enrollment-header p {
+            color: #718096;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .form-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.02);
+        }
+
+        .form-section-title {
+            color: #1b4332;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 8px;
+        }
+
+        .form-section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        /* CAMPO DE ARQUIVO (UPLOAD) */
+        .form-group input[type="file"] {
+            padding: 8px;
+            background-color: #f8fafc;
+            border: 1px dashed #cbd5e0;
+            cursor: pointer;
+        }
+
+        .btn-submit-enrollment {
+            background-color: #1b4332;
+            color: #ffffff;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 20px;
+        }
+
+        .btn-submit-enrollment:hover {
+            background-color: #a6266d;
+        }
+
+        @media (max-width: 500px) {
+            .form-card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar" style="background-color: #1b4332;">
+        <div class="logo-area">
+            <div class="school-logo-small"><img src="jobdemacedobritologo_edited.png.png" alt="Logo"></div>
+            <div><span class="nav-logo-title" style="color: #ffffff;">Job De Macedo Brito</span></div>
+        </div>
+        <a href="index.html" style="color: white; text-decoration: none; font-size: 14px;"><i class="fa-solid fa-house"></i> Início</a>
+    </header>
+
+    <main class="enrollment-container">
+        <div class="enrollment-header">
+            <h1>Secretaria Digital</h1>
+            <p>Envie os dados e fotos dos documentos obrigatórios para efetuar a matrícula. Tudo será entregue no e-mail da escola.</p>
+        </div>
+
+        <div class="form-card">
+            
+            <form action="https://formspree.io/f/jobmacedobrito@gmail.com" method="POST" enctype="multipart/form-data">
+                
+                <div class="form-section-title"><i class="fa-solid fa-user"></i> Dados do Estudante</div>
+                
+                <div class="form-group">
+                    <label for="nome">Nome Completo do Aluno</label>
+                    <input type="text" id="nome" name="Nome do Aluno" required placeholder="Nome completo">
+                </div>
+
+                <div class="form-group">
+                    <label for="turma">Ano Pretendido</label>
+                    <select id="turma" name="Ano Pretendido" required>
+                        <option value="" disabled selected>Selecione a série</option>
+                        <option value="1º Ano">1º Ano - Ensino Médio (Integral)</option>
+                        <option value="2º Ano">2º Ano - Ensino Médio (Integral)</option>
+                        <option value="3º Ano">3º Ano - Ensino Médio (Integral)</option>
+                    </select>
+                </div>
+
+                <div class="form-section-title"><i class="fa-solid fa-cloud-arrow-up"></i> Documentos Obrigatórios (Fotos ou PDF)</div>
+                
+                <div class="form-group">
+                    <label>Foto do RG/CPF do Aluno</label>
+                    <input type="file" name="RG_CPF_Aluno" accept="image/*,.pdf" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Foto do Histórico Escolar ou Declaração</label>
+                    <input type="file" name="Historico_Escolar" accept="image/*,.pdf" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Foto do Comprovante de Residência</label>
+                    <input type="file" name="Comprovante_Residencia" accept="image/*,.pdf" required>
+                </div>
+
+                <div class="form-section-title"><i class="fa-solid fa-user-shield"></i> Responsável Legal</div>
+
+                <div class="form-group">
+                    <label for="responsavel">Nome do Responsável</label>
+                    <input type="text" id="responsavel" name="Nome do Responsavel" placeholder="Nome do pai, mãe ou tutor" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsapp">WhatsApp de Contato</label>
+                    <input type="tel" id="whatsapp" name="WhatsApp de Contato" required placeholder="(86) 99999-0000">
+                </div>
+
+                <input type="text" name="_gotcha" style="display:none">
+
+                <button type="submit" class="btn-submit-enrollment">Enviar Matrícula para o E-mail</button>
+
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>

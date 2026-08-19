@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Docente - CETI Job De Macedo Brito</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+      if (sessionStorage.getItem('usuario_logado') !== 'true') {
+          window.location.href = 'login-professor.html';
+      }
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f5;
+            color: #2d3748;
+        }
+
+        .navbar-prof {
+            background-color: #1b4332;
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-items-prof {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu-items-prof a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-logout {
+            background-color: #a6266d;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .welcome-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-left: 6px solid #1b4332;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .action-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            border-color: #1b4332;
+        }
+
+        .action-card i {
+            font-size: 36px;
+            color: #1b4332;
+            margin-bottom: 15px;
+        }
+
+        .action-card h3 {
+            margin: 0 0 10px 0;
+            color: #1b4332;
+        }
+
+        .action-card p {
+            color: #718096;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .btn-card {
+            display: inline-block;
+            background-color: #1b4332;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 850px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #a0aec0;
+        }
+
+        .modal-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .modal-table th, .modal-table td {
+            border: 1px solid #e2e8f0;
+            padding: 8px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .modal-table th {
+            background-color: #f7fafc;
+            color: #1b4332;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn-salvar {
+            background-color: #1b4332;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .btn-add {
+            background-color: #2b6cb0;
+            color: white;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .editavel {
+            background-color: #fffaf0;
+            border: 1px dashed #dd6b20 !important;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar-prof">
+        <div style="font-weight: bold; font-size: 18px;">
+            <i class="fa-solid fa-graduation-cap"></i> Portal Acadêmico - Docente
+        </div>
+
+        <nav>
+            <ul class="menu-items-prof">
+                <li><a href="#"><i class="fa-solid fa-house"></i> Início</a></li>
+                <li><a onclick="abrirModal('modalChamada')"><i class="fa-solid fa-clipboard-user"></i> Frequência</a></li>
+                <li><a onclick="abrirModal('modalGrade')"><i class="fa-solid fa-calendar-days"></i> Grade Horária</a></li>
+                <li><a onclick="abrirModal('modalNotas')"><i class="fa-solid fa-pen-to-square"></i> Lançar Notas</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-info">
+            <span id="nomeProfessorHeader"><i class="fa-solid fa-user-tie"></i> Prof. Docente</span>
+            <a href="login-professor.html" onclick="sessionStorage.removeItem('usuario_logado')" class="btn-logout">
+                <i class="fa-solid fa-right-from-bracket"></i> Sair
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="welcome-card">
+            <h1 style="margin: 0 0 10px 0; font-size: 24px; color: #1b4332;">Gestão Escolar de Tempo Integral</h1>
+            <p style="margin: 0; color: #718096;">Controle de presença, turmas e quadro de horários do CETI Job De Macedo Brito.</p>
+        </div>
+
+        <div class="actions-grid">
+            <div class="action-card">
+                <i class="fa-solid fa-clipboard-user"></i>
+                <h3>Frequência Diária</h3>
+                <p>Edite a chamada e adicione alunos por turma.</p>
+                <button class="btn-card" onclick="abrirModal('modalChamada')">Editar Frequência</button>
+            </div>
+
+            <div class="action-card">
+                <i class="fa-solid fa-calendar-days"></i>
+                <h3>Grade Horária</h3>
+                <p>Veja e edite a grade de cada turma.</p>
+                <button class="btn-card" onclick="abrirModal('modalGrade')">Ver / Editar Grade</button>
+            </div>
+
+            <div class="action-card">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <h3>Lançamento de Notas</h3>
+                <p>Insira notas e cadastre alunos por turma.</p>
+                <button class="btn-card" onclick="abrirModal('modalNotas')">Lançar Notas</button>
+            </div>
+
+            <div class="action-card">
+                <i class="fa-solid fa-book-open"></i>
+                <h3>Plano de Aula</h3>
+                <p>Registre os conteúdos e diário de classe.</p>
+                <button class="btn-card" onclick="abrirModal('modalPlano')">Registrar Aula</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- MODAL 1: FREQUÊNCIA -->
+    <div id="modalChamada" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModal('modalChamada')">&times;</span>
+            <h2 style="color: #1b4332; margin-top: 0;"><i class="fa-solid fa-clipboard-user"></i> Frequência por Turma</h2>
+            
+            <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 10px;">
+                <div style="flex: 1;">
+                    <label style="font-weight: bold; font-size: 13px;">Selecione a Turma:</label>
+                    <select id="selectTurma" class="form-control" style="margin-bottom: 0;" onchange="carregarFrequencia()">
+                        <option value="1A">1º Ano A - Tempo Integral</option>
+                        <option value="1B">1º Ano B - Tempo Integral</option>
+                        <option value="2A">2º Ano A - Tempo Integral</option>
+                        <option value="2B">2º Ano B - Tempo Integral</option>
+                        <option value="3A" selected>3º Ano A - Tempo Integral</option>
+                        <option value="3B">3º Ano B - Tempo Integral</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn-add" onclick="adicionarAlunoFrequencia()"><i class="fa-solid fa-user-plus"></i> + Adicionar Aluno</button>
+
+            <table class="modal-table">
+                <thead>
+                    <tr>
+                        <th>Nº</th>
+                        <th>Nome do Aluno</th>
+                        <th>Status</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaAlunos"></tbody>
+            </table>
+
+            <button class="btn-salvar" onclick="salvarFrequencia()">Salvar Frequência da Turma</button>
+        </div>
+    </div>
+
+    <!-- MODAL 2: GRADE HORÁRIA -->
+    <div id="modalGrade" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModal('modalGrade')">&times;</span>
+            <h2 style="color: #1b4332; margin-top: 0;"><i class="fa-solid fa-calendar-days"></i> Grade Horária por Turma</h2>
+            
+            <label style="font-weight: bold; font-size: 13px;">Selecione a Turma:</label>
+            <select id="selectTurmaGrade" class="form-control" style="width: 300px; display: inline-block; margin-left: 10px;" onchange="carregarGrade()">
+                <option value="1A">1º Ano A - Tempo Integral</option>
+                <option value="1B">1º Ano B - Tempo Integral</option>
+                <option value="2A">2º Ano A - Tempo Integral</option>
+                <option value="2B">2º Ano B - Tempo Integral</option>
+                <option value="3A" selected>3º Ano A - Tempo Integral</option>
+                <option value="3B">3º Ano B - Tempo Integral</option>
+            </select>
+
+            <br>
+            <button class="btn-add" onclick="adicionarHorario()"><i class="fa-solid fa-plus"></i> + Adicionar Horário/Aula</button>
+
+            <table class="modal-table">
+                <thead>
+                    <tr>
+                        <th>Horário</th>
+                        <th>Segunda</th>
+                        <th>Terça</th>
+                        <th>Quarta</th>
+                        <th>Quinta</th>
+                        <th>Sexta</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaGrade"></tbody>
+            </table>
+
+            <button class="btn-salvar" onclick="salvarGrade()">Salvar Grade da Turma</button>
+        </div>
+    </div>
+
+    <!-- MODAL 3: NOTAS -->
+    <div id="modalNotas" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModal('modalNotas')">&times;</span>
+            <h2 style="color: #1b4332; margin-top: 0;"><i class="fa-solid fa-pen-to-square"></i> Lançamento de Notas por Turma</h2>
+            
+            <label style="font-weight: bold; font-size: 13px;">Selecione a Turma:</label>
+            <select id="selectTurmaNotas" class="form-control" style="width: 300px; display: inline-block; margin-left: 10px;" onchange="carregarNotas()">
+                <option value="1A">1º Ano A - Tempo Integral</option>
+                <option value="1B">1º Ano B - Tempo Integral</option>
+                <option value="2A">2º Ano A - Tempo Integral</option>
+                <option value="2B">2º Ano B - Tempo Integral</option>
+                <option value="3A" selected>3º Ano A - Tempo Integral</option>
+                <option value="3B">3º Ano B - Tempo Integral</option>
+            </select>
+
+            <br>
+            <button class="btn-add" onclick="adicionarAlunoNotas()"><i class="fa-solid fa-user-plus"></i> + Adicionar Aluno para Notas</button>
+
+            <table class="modal-table">
+                <thead>
+                    <tr>
+                        <th>Aluno</th>
+                        <th>1º Bim.</th>
+                        <th>2º Bim.</th>
+                        <th>3º Bim.</th>
+                        <th>4º Bim.</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaNotas"></tbody>
+            </table>
+            <button class="btn-salvar" onclick="salvarNotas()">Salvar Notas da Turma</button>
+        </div>
+    </div>
+
+    <!-- MODAL 4: PLANO DE AULA -->
+    <div id="modalPlano" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModal('modalPlano')">&times;</span>
+            <h2 style="color: #1b4332; margin-top: 0;"><i class="fa-solid fa-book-open"></i> Registro de Plano de Aula</h2>
+            
+            <label style="font-size: 14px; font-weight: bold;">Turma:</label>
+            <select class="form-control">
+                <option>1º Ano A - Tempo Integral</option>
+                <option>1º Ano B - Tempo Integral</option>
+                <option>2º Ano A - Tempo Integral</option>
+                <option>2º Ano B - Tempo Integral</option>
+                <option>3º Ano A - Tempo Integral</option>
+                <option>3º Ano B - Tempo Integral</option>
+            </select>
+
+            <label style="font-size: 14px; font-weight: bold;">Conteúdo Lecionado:</label>
+            <input type="text" class="form-control" placeholder="Ex: Funções Exponenciais">
+
+            <label style="font-size: 14px; font-weight: bold;">Tarefa para Casa / Observações:</label>
+            <textarea class="form-control" rows="3" placeholder="Exercícios da página 45..."></textarea>
+
+            <button class="btn-salvar" onclick="alert('Plano de aula registrado no sistema!'); fecharModal('modalPlano');">Salvar Plano de Aula</button>
+        </div>
+    </div>
+
+    <script>
+        const nomeSalvo = localStorage.getItem('nome_professor');
+        if (nomeSalvo) {
+            document.getElementById('nomeProfessorHeader').innerHTML = `<i class="fa-solid fa-user-tie"></i> Prof. ${nomeSalvo}`;
+        }
+
+        // --- SISTEMA DE FREQUÊNCIA ---
+        function carregarFrequencia() {
+            const turma = document.getElementById('selectTurma').value;
+            const dados = JSON.parse(localStorage.getItem('freq_' + turma)) || [
+                { nome: 'Ana Clara Silva', status: 'P' },
+                { nome: 'Bruno Oliveira', status: 'P' }
+            ];
+            const tbody = document.getElementById('tabelaAlunos');
+            tbody.innerHTML = '';
+
+            dados.forEach((aluno, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td contenteditable="true" class="editavel">${aluno.nome}</td>
+                    <td>
+                        <select class="status-freq" style="padding: 4px;">
+                            <option value="P" ${aluno.status === 'P' ? 'selected' : ''}>Presente</option>
+                            <option value="F" ${aluno.status === 'F' ? 'selected' : ''}>Falta</option>
+                            <option value="J" ${aluno.status === 'J' ? 'selected' : ''}>Justificado</option>
+                        </select>
+                    </td>
+                    <td><button style="color: red; border: none; background: none; cursor: pointer;" onclick="removerLinha(this)"><i class="fa-solid fa-trash"></i></button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function adicionarAlunoFrequencia() {
+            const nome = prompt("Digite o nome do aluno:");
+            if (nome) {
+                const tbody = document.getElementById('tabelaAlunos');
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${tbody.children.length + 1}</td>
+                    <td contenteditable="true" class="editavel">${nome}</td>
+                    <td>
+                        <select class="status-freq" style="padding: 4px;">
+                            <option value="P">Presente</option>
+                            <option value="F">Falta</option>
+                            <option value="J">Justificado</option>
+                        </select>
+                    </td>
+                    <td><button style="color: red; border: none; background: none; cursor: pointer;" onclick="removerLinha(this)"><i class="fa-solid fa-trash"></i></button></td>
+                `;
+                tbody.appendChild(tr);
+            }
+        }
+
+        function salvarFrequencia() {
+            const turma = document.getElementById('selectTurma').value;
+            const linhas = document.querySelectorAll('#tabelaAlunos tr');
+            const lista = [];
+
+            linhas.forEach(row => {
+                const nome = row.cells[1].innerText.trim();
+                const status = row.querySelector('.status-freq').value;
+                if (nome) lista.push({ nome, status });
+            });
+
+            localStorage.setItem('freq_' + turma, JSON.stringify(lista));
+            alert('Frequência da turma ' + turma + ' salva no sistema!');
+            fecharModal('modalChamada');
+        }
+
+        // --- SISTEMA DE GRADE HORÁRIA ---
+        function carregarGrade() {
+            const turma = document.getElementById('selectTurmaGrade').value;
+            const dados = JSON.parse(localStorage.getItem('grade_' + turma)) || [
+                ['07:30 - 08:20', 'Matemática', 'Português', 'Física', 'História', 'Química']
+            ];
+            const tbody = document.getElementById('tabelaGrade');
+            tbody.innerHTML = '';
+
+            dados.forEach(linha => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td contenteditable="true" class="editavel"><strong>${linha[0]}</strong></td>
+                    <td contenteditable="true" class="editavel">${linha[1]}</td>
+                    <td contenteditable="true" class="editavel">${linha[2]}</td>
+                    <td contenteditable="true" class="editavel">${linha[3]}</td>
+                    <td contenteditable="true" class="editavel">${linha[4]}</td>
+                    <td contenteditable="true" class="editavel">${linha[5]}</td>
+                    <td><button style="color: red; border: none; background: none; cursor: pointer;" onclick="removerLinha(this)"><i class="fa-solid fa-trash"></i></button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function adicionarHorario() {
+            const tbody = document.getElementById('tabelaGrade');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td contenteditable="true" class="editavel"><strong>00:00 - 00:00</strong></td>
+                <td contenteditable="true" class="editavel">-</td>
+                <td contenteditable="true" class="editavel">-</td>
+                <td contenteditable="true" class="editavel">-</td>
+                <td contenteditable="true" class="editavel">-</td>
+                <td contenteditable="true" class="editavel">-</td>
+                <td><button style="color: red; border: none; background: none; cursor: pointer;" onclick="removerLinha(this)"><i class="fa-solid fa-trash"></i></button></td>
+            `;
+            tbody.appendChild(tr);
+        }
+
+        function salvarGrade() {
+            const turma = document.getElementById('selectTurmaGrade').value;
+            const linhas = document.querySelectorAll('#tabelaGrade tr');
+            const matriz = [];
+
+            linhas.forEach(row => {
+                const cols = [];
+                for (let i = 0; i < 6; i++) {
+                    cols.push(row.cells[i].innerText.trim());
+                }
+                matriz.push(cols);
+            });
+
+            localStorage.setItem('grade_' + turma, JSON.stringify(matriz));
+            alert('Grade Horária da turma ' + turma + ' salva no sistema!');
+            fecharModal('modalGrade');
+        }
+
+        // --- SISTEMA DE NOTAS ---
+        function carregarNotas() {
+            const turma = document.getElementById('selectTurmaNotas').value;
+            const dados = JSON.parse(localStorage.getItem('notas_' + turma)) || [
+                { nome: 'Ana Clara Silva', n1: '8.5', n2: '9.0', n3: '8.0', n4: '9.5' }
+            ];
+            const tbody = document.getElementById('tabelaNotas');
+            tbody.innerHTML = '';
+
+            dados.forEach(aluno => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td contenteditable="true" class="editavel">${aluno.nome}</td>
+                    <td><input type="number" class="n1" style="width: 50px;" value="${aluno.n1}"></td>
+                    <td><input type="number" class="n2" style="width: 50px;" value="${aluno.n2}"></td>
+                    <td><input type="number" class="n3" style="width: 50px;" value="${aluno.n3}"></td>
+                    <td><input type="number" class="n4" style="width: 50px;" value="${aluno.n4}"></td>
+                    <td><button style="color: red; border: none; background: none; cursor: pointer;" onclick="removerLinha(this)"><i class="fa-solid fa-trash"></i></button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function adicionarAlunoNotas() {
+            const nome = prompt("Digite o nome do aluno:");
+            if (nome) {
+                const tbody = document.getElementById('tabelaNotas');
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td contenteditable="true" class="editavel">${nome}</td>
+                    <td><input type="number" class="n1" style="width: 50px;" value="0.0"></td>
+                    <td><input type="number" class="n2" style="width: 50px;" value="0.0"></td>
+                    <td><input type="number" class="n3" style="width: 50px;" value="0.0"></td>
+                    <td><input type="number" class="n4" style="width: 50px;" value="0.0"></td>
+                    <td><button style="color: red; border: none; background: none; cursor: pointer;" onclick="removerLinha(this)"><i class="fa-solid fa-trash"></i></button></td>
+                `;
+                tbody.appendChild(tr);
+            }
+        }
+
+        function salvarNotas() {
+            const turma = document.getElementById('selectTurmaNotas').value;
+            const linhas = document.querySelectorAll('#tabelaNotas tr');
+            const lista = [];
+
+            linhas.forEach(row => {
+                const nome = row.cells[0].innerText.trim();
+                const n1 = row.querySelector('.n1').value;
+                const n2 = row.querySelector('.n2').value;
+                const n3 = row.querySelector('.n3').value;
+                const n4 = row.querySelector('.n4').value;
+                if (nome) lista.push({ nome, n1, n2, n3, n4 });
+            });
+
+            localStorage.setItem('notas_' + turma, JSON.stringify(lista));
+            alert('Notas da turma ' + turma + ' salvas no sistema!');
+            fecharModal('modalNotas');
+        }
+
+        // --- FUNÇÕES GERAIS ---
+        function removerLinha(btn) {
+            if (confirm("Deseja remover este item?")) {
+                btn.closest('tr').remove();
+            }
+        }
+
+        function abrirModal(idModal) {
+            document.getElementById(idModal).style.display = 'flex';
+            if (idModal === 'modalChamada') carregarFrequencia();
+            if (idModal === 'modalGrade') carregarGrade();
+            if (idModal === 'modalNotas') carregarNotas();
+        }
+
+        function fecharModal(idModal) {
+            document.getElementById(idModal).style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espaço dos Pais - CETI Job de Macêdo Brito</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f4f7f5;
+            color: #2d3748;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .parents-container {
+            max-width: 1000px;
+            margin: 50px auto 100px auto;
+            padding: 0 4%;
+        }
+
+        /* CABEÇALHO */
+        .parents-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .parents-header h1 {
+            color: #1b4332;
+            font-size: 36px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .parents-header p {
+            color: #718096;
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* PAINEL DE DOIS BLOCOS */
+        .parents-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* MURAL DE AVISOS */
+        .notice-board {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.02);
+        }
+
+        .section-title {
+            color: #1b4332;
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #f4f7f5;
+            padding-bottom: 10px;
+        }
+
+        .notice-card {
+            background: #f8fafc;
+            border-left: 4px solid #a6266d; /* Rosa destaque */
+            padding: 20px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 20px;
+        }
+
+        .notice-date {
+            font-size: 12px;
+            color: #718096;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+        }
+
+        .notice-card h3 {
+            margin: 0 0 10px 0;
+            color: #2d3748;
+            font-size: 18px;
+        }
+
+        .notice-card p {
+            margin: 0;
+            font-size: 14.5px;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* COLUNA LATERAL - CONTATOS E LINKS */
+        .sidebar-box {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.02);
+            height: fit-content;
+        }
+
+        .contact-link-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #edf2f7;
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        .contact-link-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-link-item:hover {
+            color: #a6266d;
+        }
+
+        .contact-icon {
+            background-color: #1b4332;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .contact-details h4 {
+            margin: 0;
+            font-size: 14px;
+            color: #2d3748;
+        }
+
+        .contact-details p {
+            margin: 2px 0 0 0;
+            font-size: 13px;
+            color: #718096;
+        }
+
+        @media (max-width: 800px) {
+            .parents-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar" style="background-color: #1b4332;">
+        <div class="logo-area">
+            <div class="school-logo-small"><img src="jobdemacedobritologo_edited.png.png" alt="Logo"></div>
+            <div>
+                <span class="nav-logo-title" style="color: #ffffff;">Job De Macedo Brito</span>
+            </div>
+        </div>
+        <nav class="nav-links-center">
+            <a href="index.html" style="color: white; text-decoration: none; font-size: 14px;"><i class="fa-solid fa-house"></i> Portal Principal</a>
+        </nav>
+    </header>
+
+    <main class="parents-container">
+        <div class="parents-header">
+            <h1>Espaço dos Pais e Responsáveis</h1>
+            <p>Canal direto de comunicação da comunidade escolar com a gestão, coordenação e acompanhamento pedagógico dos alunos.</p>
+        </div>
+
+        <div class="parents-grid">
+            
+            <section class="notice-board">
+                <h2 class="section-title"><i class="fa-solid fa-bullhorn"></i> Mural de Comunicados</h2>
+                
+                <div class="notice-card">
+                    <p class="notice-date">Postado hoje</p>
+                    <h3>Plantão Pedagógico e Entrega de Boletins</h3>
+                    <p>Convidamos todos os pais e responsáveis para a nossa reunião de acompanhamento bimestral. Será um momento de conversar diretamente com os professores de cada disciplina e com a equipe de coordenação sobre o desempenho escolar de seu filho.</p>
+                </div>
+
+                <div class="notice-card">
+                    <p class="notice-date">Esta semana</p>
+                    <h3>Horário de Funcionamento - Tempo Integral</h3>
+                    <p>Lembramos que, por ser uma escola de tempo integral, a permanência dos alunos é obrigatória durante os dois turnos. Pedimos a colaboração dos responsáveis para evitar marcações de consultas e saídas antecipadas no horário letivo sem aviso prévio à secretaria.</p>
+                </div>
+            </section>
+
+            <aside class="sidebar-box">
+                <h2 class="section-title" style="font-size: 18px;"><i class="fa-solid fa-headset"></i> Atendimento</h2>
+                
+                <div class="contact-link-item">
+                    <div class="contact-icon"><i class="fa-solid fa-address-book"></i></div>
+                    <div class="contact-details">
+                        <h4>Secretaria Escolar</h4>
+                        <p>Segunda a Sexta (Manhã/Tarde)</p>
+                    </div>
+                </div>
+
+                <div class="contact-link-item">
+                    <div class="contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <div class="contact-details">
+                        <h4>WhatsApp Coordenação</h4>
+                        <p>(86) 99999-0000</p>
+                    </div>
+                </div>
+
+                <div class="contact-link-item">
+                    <div class="contact-icon"><i class="fa-regular fa-envelope"></i></div>
+                    <div class="contact-details">
+                        <h4>E-mail Institucional</h4>
+                        <p>jobmacedobrito@gmail.com</p>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+</body>
+</html>

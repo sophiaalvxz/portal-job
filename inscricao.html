@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição em Olimpíadas - CETI Job de Macêdo Brito</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f4f7f5;
+            color: #2d3748;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .form-container {
+            max-width: 650px;
+            margin: 60px auto 100px auto;
+            padding: 0 4%;
+        }
+
+        .form-box {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.02);
+        }
+
+        .form-box h1 {
+            color: #1b4332;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            text-align: center;
+        }
+
+        .form-box p {
+            color: #718096;
+            font-size: 14px;
+            text-align: center;
+            margin: 0 0 30px 0;
+            line-height: 1.5;
+        }
+
+        /* CAMPOS DO FORMULÁRIO */
+        .form-group {
+            margin-bottom: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: #fff;
+            color: #2d3748;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1b4332;
+        }
+
+        /* BOTÃO ENVIAR */
+        .btn-submit-form {
+            background-color: #1b4332;
+            color: #ffffff;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-submit-form:hover {
+            background-color: #a6266d; /* Rosa destaque ao passar o mouse */
+        }
+
+        @media (max-width: 480px) {
+            .form-box { padding: 25px; }
+            .form-box h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar" style="background-color: #1b4332;">
+        <div class="logo-area">
+            <div class="school-logo-small"><img src="jobdemacedobritologo_edited.png.png" alt="Logo"></div>
+            <div>
+                <span class="nav-logo-title" style="color: #ffffff;">Job De Macedo Brito</span>
+            </div>
+        </div>
+        <nav class="nav-links-center">
+            <a href="index.html" style="color: white; text-decoration: none; font-size: 14px;"><i class="fa-solid fa-house"></i> Voltar ao Início</a>
+        </nav>
+    </header>
+
+    <main class="form-container">
+        <div class="form-box">
+            <h1>Ficha de Inscrição</h1>
+            <p>Preencha os seus dados abaixo para garantir a sua participação nas Olimpíadas Acadêmicas do CETI Job de Macêdo Brito.</p>
+
+            <form action="#" method="POST" onsubmit="alert('Inscrição simulada com sucesso!'); return false;">
+                
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="turma">Sua Turma / Ano</label>
+                    <select id="turma" name="turma" required>
+                        <option value="" disabled selected>Selecione a sua turma</option>
+                        <option value="1ano">1º Ano - Ensino Médio</option>
+                        <option value="2ano">2º Ano - Ensino Médio</option>
+                        <option value="3ano">3º Ano - Ensino Médio</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="olimpiada">Em qual Olimpíada deseja se inscrever?</label>
+                    <input type="text" id="olimpiada" name="olimpiada" placeholder="Ex: OBMEP, OBA, ONBH, Canguru de Matemática..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contato">Número de Contato (WhatsApp)</label>
+                    <input type="tel" id="contato" name="contato" placeholder="(86) 99999-0000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Observações ou Nível da Prova (Opcional)</label>
+                    <textarea id="mensagem" name="mensagem" rows="4" placeholder="Ex: Preciso de atendimento especial ou dúvida sobre a fase da prova..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit-form">Confirmar Minha Inscrição</button>
+
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>

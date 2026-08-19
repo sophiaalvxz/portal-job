@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Química - CETI Job De Macedo Brito</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ESTILOS INSTITUCIONAIS AVANÇADOS */
+        body {
+            background-color: #f4f7f5;
+            color: #2d3748;
+        }
+
+        /* Hero Banner Executivo */
+        .discipline-hero {
+            background: linear-gradient(135deg, rgba(27, 67, 50, 0.95) 0%, rgba(11, 30, 22, 0.98) 100%), 
+                        url('Foto alunos_edited (2).jpg') center/cover no-repeat;
+            color: #ffffff;
+            padding: 80px 4%;
+            border-bottom: 4px solid #a6266d;
+        }
+
+        .hero-inside {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .hero-text h1 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-badge {
+            background-color: #a6266d;
+            color: #ffffff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* Layout Split (Duas Colunas) */
+        .discipline-grid-layout {
+            max-width: 1200px;
+            margin: 40px auto 80px auto;
+            padding: 0 4%;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        /* Coluna Principal */
+        .main-discipline-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+
+        .main-discipline-card h2 {
+            color: #1b4332;
+            font-size: 24px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .main-discipline-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: #a6266d;
+        }
+
+        .main-discipline-card p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+
+        /* Lista de Matérias Acadêmicas */
+        .academic-topic-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+
+        .academic-topic-list li {
+            background-color: #f8faf9;
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+            color: #1b4332;
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .academic-topic-list li i {
+            color: #a6266d;
+            font-size: 18px;
+        }
+
+        /* GALERIA DE IMAGENS PROFISSIONAL */
+        .discipline-gallery-section {
+            margin-top: 40px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .gallery-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .gallery-img-wrapper {
+            width: 100%;
+            height: 160px;
+            overflow: hidden;
+            background-color: #ddd;
+        }
+
+        .gallery-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-caption {
+            padding: 12px 15px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4a5568;
+            background: #ffffff;
+            text-align: center;
+        }
+
+        /* Lateral (Sidebar) */
+        .sidebar-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            height: fit-content;
+        }
+
+        .sidebar-card h3 {
+            color: #1b4332;
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        /* Caixa do Docente */
+        .professor-badge-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f8faf9;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .prof-avatar-placeholder {
+            width: 50px;
+            height: 50px;
+            background-color: #1b4332;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        .prof-info h4 {
+            margin: 0;
+            font-size: 15px;
+            color: #2d3748;
+        }
+
+        .prof-info span {
+            font-size: 12px;
+            color: #a6266d;
+            font-weight: 600;
+        }
+
+        /* Botão Executivo de Voltar */
+        .btn-back-corporate {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #1b4332;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-back-corporate:hover {
+            background-color: #a6266d;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .discipline-grid-layout { grid-template-columns: 1fr; }
+            .hero-inside { flex-direction: column; text-align: center; }
+            .btn-back-corporate { margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-line"></div>
+    
+    <header class="navbar">
+        <div class="logo-area">
+            <div class="school-logo-small">
+                <img src="jobdemacedobritologo_edited.png.png" alt="Logo">
+            </div>
+            <div>
+                <span class="nav-logo-title">Job De Macedo Brito</span>
+                <span class="nav-logo-subtitle">Ensino Médio</span>
+            </div>
+        </div>
+        <a href="index.html" class="btn-nav-login"><i class="fa-solid fa-house"></i> Portal</a>
+    </header>
+
+    <section class="discipline-hero">
+        <div class="hero-inside">
+            <div class="hero-text">
+                <span class="hero-badge">Ciências da Natureza</span>
+                <h1>Componente Curricular: Química</h1>
+            </div>
+        </div>
+    </section>
+
+    <div class="discipline-grid-layout">
+        
+        <main class="main-discipline-card">
+            <h2>Visão Geral da Disciplina</h2>
+            <p>No âmbito do Ensino Médio em Tempo Integral do CETI Job de Macêdo Brito, a disciplina de Química adota uma abordagem estritamente científica e investigativa. O foco central é capacitar o estudante a compreender as interações físico-químicas da matéria, correlacionando conceitos teóricos moleculares com aplicações industriais, ambientais e tecnológicas do cotidiano.</p>
+            <p>O currículo expandido visa não apenas o êxito em avaliações de larga escala, como o ENEM, mas também a introdução à metodologia científica através do desenvolvimento de relatórios técnicos de práticas laboratoriais.</p>
+
+            <h2>Plano de Estudo Acadêmico</h2>
+            <ul class="academic-topic-list">
+                <li><i class="fa-solid fa-atom"></i> Estrutura Atômica Avançada e Modelos Orbitais</li>
+                <li><i class="fa-solid fa-vial"></i> Estequiometria Computacional e Balanceamento Químico</li>
+                <li><i class="fa-solid fa-temperature-empty"></i> Termoquímica, Cinética e Equilíbrios em Soluções</li>
+                <li><i class="fa-solid fa-dna"></i> Química Orgânica Estrutural e Cadeias Carbônicas</li>
+            </ul>
+
+            <div class="discipline-gallery-section">
+                <h2>Galeria de Atividades Práticas</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-card">
+                        <div class="gallery-img-wrapper">
+                            <img src="experimento3noitte.png.jpg" alt="Atividade prática 1">
+                        </div>
+                        <div class="gallery-caption">Experimentos de Titulação</div>
+                    </div>
+                    <div class="gallery-card">
+                        <div class="gallery-img-wrapper">
+                            <img src="esperimentos.png.jpg" alt="Atividade prática 2">
+                        </div>
+                        <div class="gallery-caption">Análise de Reações</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar-card">
+            <h3>Corpo Docente Responsável</h3>
+            <div class="professor-badge-card">
+                <div class="prof-avatar-placeholder"><i class="fa-solid fa-user-graduate"></i></div>
+                <div class="prof-info">
+                    <h4>Prof. Marcos</h4>
+                    <span>Cadeira de Química</span>
+                </div>
+            </div>
+
+            <h3>Informações Administrativas</h3>
+            <p style="font-size: 14px; color: #718096; line-height: 1.6; margin-bottom: 25px;">
+                <strong>Carga Horária:</strong> 120 horas/aula<br>
+                <strong>Modalidade:</strong> Teórico-Prática<br>
+                <strong>Local:</strong> Laboratório de Ciências
+            </p>
+
+            <a href="disciplinas.html" class="btn-back-corporate">
+                <i class="fa-solid fa-arrow-left-long"></i> Voltar à Grade
+            </a>
+        </aside>
+
+    </div>
+
+</body>
+</html>

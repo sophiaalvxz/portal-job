@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Portal do Docente</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-card {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 400px;
+            border-top: 6px solid #1b4332;
+            position: relative;
+        }
+
+        .btn-fechar {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #a0aec0;
+            font-size: 20px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .btn-fechar:hover {
+            color: #e53e3e;
+        }
+
+        .header-login {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header-login i {
+            font-size: 40px;
+            color: #1b4332;
+            margin-bottom: 10px;
+        }
+
+        .header-login h2 {
+            margin: 0;
+            color: #1b4332;
+            font-size: 22px;
+        }
+
+        .header-login p {
+            margin: 5px 0 0 0;
+            color: #718096;
+            font-size: 13px;
+        }
+
+        .alert-box {
+            background-color: #e6fffa;
+            border: 1px solid #b2f5ea;
+            color: #234e52;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2d3748;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: #1b4332;
+        }
+
+        .btn-login {
+            width: 100%;
+            background-color: #1b4332;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        .btn-login:hover {
+            background-color: #2d6a4f;
+        }
+
+        .btn-trocar {
+            display: block;
+            width: 100%;
+            background: none;
+            border: none;
+            color: #3182ce;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 12px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-trocar:hover {
+            text-decoration: underline;
+        }
+
+        .btn-voltar {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #718096;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .btn-voltar:hover {
+            color: #e53e3e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <a href="index.html" class="btn-fechar" title="Sair / Voltar"><i class="fa-solid fa-xmark"></i></a>
+
+        <div class="header-login">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <h2>Portal do Docente</h2>
+            <p>Identificação de Acesso do Professor</p>
+        </div>
+
+        <div class="alert-box" id="mensagemSaudacao">
+            Digite seu nome para acessar o portal.
+        </div>
+
+        <form id="formLogin">
+            <div class="form-group">
+                <label>Nome do Professor</label>
+                <input type="text" id="nomeProfessor" class="form-control" placeholder="Digite seu nome" oninput="atualizarEstado()" required>
+            </div>
+
+            <div class="form-group">
+                <label id="labelSenha">Senha de Acesso</label>
+                <input type="password" id="senhaProfessor" class="form-control" placeholder="Digite sua senha" required>
+            </div>
+
+            <button type="submit" class="btn-login" id="btnSubmit">
+                <i class="fa-solid fa-lock"></i> Entrar no Portal
+            </button>
+        </form>
+
+        <button type="button" class="btn-trocar" onclick="trocarProfessor()">
+            <i class="fa-solid fa-user-gear"></i> Não é você? Trocar de professor
+        </button>
+
+        <a href="index.html" class="btn-voltar"><i class="fa-solid fa-arrow-left"></i> Sair para a Página Inicial</a>
+    </div>
+
+    <script>
+        // Carrega o último professor ativo se existir
+        window.addEventListener('DOMContentLoaded', () => {
+            const professorSalvo = localStorage.getItem('ultimoProfessorLogado');
+            if (professorSalvo) {
+                document.getElementById('nomeProfessor').value = professorSalvo;
+            }
+            atualizarEstado();
+        });
+
+        // Atualiza as mensagens e textos com base no nome digitado e no cadastro
+        function atualizarEstado() {
+            const nomeInput = document.getElementById('nomeProfessor').value.trim();
+            const msgBox = document.getElementById('mensagemSaudacao');
+            const labelSenha = document.getElementById('labelSenha');
+            const btnSubmit = document.getElementById('btnSubmit');
+
+            if (!nomeInput) {
+                msgBox.innerHTML = "Digite seu nome para acessar o portal.";
+                labelSenha.innerText = "Senha de Acesso";
+                btnSubmit.innerHTML = '<i class="fa-solid fa-lock"></i> Entrar no Portal';
+                return;
+            }
+
+            const chaveSenha = 'senha_prof_' + nomeInput.toLowerCase();
+            const senhaExiste = localStorage.getItem(chaveSenha);
+
+            if (!senhaExiste) {
+                // Regra: Primeiro Acesso
+                msgBox.innerHTML = `Primeiro acesso, <strong>Prof. ${nomeInput}</strong>! Crie sua senha de acesso abaixo.`;
+                labelSenha.innerText = "Crie uma Nova Senha";
+                btnSubmit.innerHTML = '<i class="fa-solid fa-user-plus"></i> Cadastrar Senha e Entrar';
+            } else {
+                // Regra: Usuário já cadastrado
+                msgBox.innerHTML = `Bem-vindo de volta, <strong>Prof. ${nomeInput}</strong>! Digite sua senha para entrar.`;
+                labelSenha.innerText = "Senha de Acesso";
+                btnSubmit.innerHTML = '<i class="fa-solid fa-lock"></i> Entrar no Portal';
+            }
+        }
+
+        // Processa o envio do formulário
+        document.getElementById('formLogin').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('nomeProfessor').value.trim();
+            const senhaDigitada = document.getElementById('senhaProfessor').value;
+            const chaveSenha = 'senha_prof_' + nome.toLowerCase();
+            const senhaSalva = localStorage.getItem(chaveSenha);
+
+            if (!senhaSalva) {
+                // 1º Acesso: Salva a primeira senha criada
+                localStorage.setItem(chaveSenha, senhaDigitada);
+                localStorage.setItem('ultimoProfessorLogado', nome);
+                sessionStorage.setItem('usuario_logado', 'true');
+                localStorage.setItem('nome_professor', nome);
+                
+                alert("Senha criada com sucesso! Redirecionando...");
+                window.location.href = 'professor.html';
+            } else {
+                // Acesso seguinte: Valida a senha contra a salva no 1º acesso
+                if (senhaDigitada === senhaSalva) {
+                    localStorage.setItem('ultimoProfessorLogado', nome);
+                    sessionStorage.setItem('usuario_logado', 'true');
+                    localStorage.setItem('nome_professor', nome);
+                    
+                    window.location.href = 'professor.html';
+                } else {
+                    alert("Senha incorreta! Digite a mesma senha criada no seu primeiro acesso.");
+                    document.getElementById('senhaProfessor').value = '';
+                }
+            }
+        });
+
+        // Limpa o nome para outro professor poder entrar
+        function trocarProfessor() {
+            localStorage.removeItem('ultimoProfessorLogado');
+            document.getElementById('nomeProfessor').value = '';
+            document.getElementById('senhaProfessor').value = '';
+            atualizarEstado();
+        }
+    </script>
+</body>
+</html>

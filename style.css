@@ -1,0 +1,683 @@
+/* ==========================================================================
+   PALETA DE CORES E PALETA INSTITUCIONAL
+   ========================================================================== */
+:root {
+    --verde-escuro: #1b4332;     /* Cor principal do CETI */
+    --verde-medio: #2d6a4f;      /* Efeitos de foco e hovers */
+    --verde-claro: #40916c;      /* Elementos ativos e badges */
+    --rosa-detalhe: #a6266d;     /* Linha superior de destaque */
+    --cinza-fundo: #f4f7f5;      /* Fundo contrastante leve */
+    --branco: #ffffff;
+    --texto-principal: #1b4332;
+    --texto-corpo: #495057;
+    --transicao: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ==========================================================================
+   CONFIGURAÇÕES BASE E RESET
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--cinza-fundo);
+    color: var(--texto-corpo);
+    overflow-x: hidden;
+}
+
+/* LINHA ROSA NO TOPO FIXADA */
+.top-line {
+    height: 5px;
+    background-color: var(--rosa-detalhe);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+}
+
+/* ==========================================================================
+   1. TELA DE ENTRADA DIVIDIDA (SPLIT SCREEN)
+   ========================================================================== */
+.welcome-screen {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 5px);
+    margin-top: 5px;
+    overflow: hidden;
+    background-color: var(--branco);
+}
+
+/* Lado Esquerdo: Ajustado em 20% para focar e centralizar todas as pessoas da foto */
+.welcome-image {
+    flex: 1.3;
+    background: linear-gradient(rgba(27, 67, 50, 0.15), rgba(27, 67, 50, 0.65)), 
+                url('Foto alunos_edited (2).jpg') 20% center/cover no-repeat;
+    display: flex;
+    align-items: flex-end;
+    padding: 40px;
+}
+
+.image-overlay {
+    background: rgba(27, 67, 50, 0.9);
+    color: var(--branco);
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    border-left: 5px solid var(--rosa-detalhe);
+}
+
+/* Lado Direito: Box de Identidade */
+.welcome-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: #fafbfc;
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.welcome-card {
+    text-align: center;
+    max-width: 440px;
+    width: 100%;
+}
+
+.school-logo-big {
+    width: 130px;
+    height: 130px;
+    background-color: var(--branco);
+    border-radius: 50%;
+    margin: 0 auto 30px auto;
+    overflow: hidden;
+    border: 5px solid var(--verde-escuro);
+    box-shadow: 0 10px 30px rgba(27, 67, 50, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.school-logo-big img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+}
+
+.school-name {
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--verde-escuro);
+    margin-bottom: 15px;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.school-tagline {
+    font-size: 15px;
+    color: #5a6578;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+/* Botões de Ação */
+.welcome-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-enter-portal {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    padding: 16px 25px;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: var(--transicao);
+    box-shadow: 0 6px 20px rgba(27, 67, 50, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-enter-portal:hover {
+    background-color: var(--verde-medio);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(27, 67, 50, 0.35);
+}
+
+.btn-enter-login {
+    background-color: transparent;
+    color: var(--verde-escuro);
+    border: 2px solid var(--verde-escuro);
+    padding: 14px 25px;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: var(--transicao);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-enter-login:hover {
+    background-color: rgba(27, 67, 50, 0.05);
+    color: var(--verde-medio);
+    border-color: var(--verde-medio);
+}
+
+/* ==========================================================================
+   2. NAVBAR FIXA
+   ========================================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 4%;
+    background-color: var(--branco);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    position: sticky;
+    top: 5px; 
+    z-index: 1000;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.school-logo-small {
+    width: 42px;
+    height: 42px;
+    background-color: var(--branco);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--verde-escuro);
+}
+
+.nav-logo-title {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--verde-escuro);
+}
+
+.nav-logo-subtitle {
+    display: block;
+    font-size: 11px;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0 5px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--texto-corpo);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: var(--transicao);
+}
+
+.nav-links a:hover {
+    color: var(--verde-claro);
+    background-color: rgba(64, 145, 108, 0.08);
+}
+
+.btn-nav-login {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: var(--transicao);
+}
+
+/* Títulos Globais de Seção */
+.section-title-container {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 0 20px;
+}
+
+.section-title-container h2 {
+    font-size: 32px;
+    color: var(--texto-principal);
+    margin-bottom: 12px;
+}
+
+.section-title-container p {
+    font-size: 16px;
+    color: #6c757d;
+}
+
+/* ==========================================================================
+   3. PORTAIS DE LOGIN
+   ========================================================================== */
+.login-section {
+    padding: 80px 4% 60px 4%;
+    background-color: var(--branco);
+}
+
+.login-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.login-card {
+    background-color: var(--cinza-fundo);
+    border-radius: 16px;
+    padding: 40px 30px;
+    width: 320px;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: var(--transicao);
+}
+
+.login-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(27, 67, 50, 0.08);
+}
+
+.card-icon {
+    font-size: 40px;
+    color: var(--verde-escuro);
+    margin-bottom: 20px;
+}
+
+.btn-card-action {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    border: none;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+.btn-card-action:hover {
+    background-color: var(--verde-claro);
+}
+
+/* ==========================================================================
+   4. SEÇÃO DOS SPOILERS (AS ABAS)
+   ========================================================================== */
+.spoilers-section {
+    padding: 90px 4%;
+    background-color: var(--cinza-fundo);
+}
+
+.spoilers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ESTILIZAÇÃO DA SEÇÃO EXPLORE */
+.explore-section {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.explore-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.explore-header h2 {
+    color: #1b4332; /* Verde escuro do colégio */
+    font-size: 32px;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.explore-header p {
+    color: #718096;
+    font-size: 16px;
+}
+
+/* GRID DOS CARDS */
+.explore-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+/* ESTILO DE CADA CARD */
+.explore-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Efeito ao passar o mouse */
+.explore-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(27, 67, 50, 0.08);
+    border-color: #1b4332;
+}
+
+/* CAIXINHA DO ÍCONE */
+.card-icon-box {
+    width: 50px;
+    height: 50px;
+    background-color: #eaf4f0; /* Verdinho bem claro de fundo */
+    color: #1b4332; /* Ícone verde escuro */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.explore-card h3 {
+    font-size: 19px;
+    color: #2d3748;
+    margin: 0 0 12px 0;
+    font-weight: 600;
+}
+
+.explore-card p {
+    font-size: 14px;
+    color: #718096;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+    flex-grow: 1; /* Faz o texto ocupar o espaço e alinhar os links embaixo */
+}
+
+/* LINK INTERNO */
+.card-link {
+    color: #a6266d; /* Rosa/vinho elegante dos detalhes */
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+}
+
+.explore-card:hover .card-link {
+    color: #1b4332; /* O link fica verde quando passa o mouse no card */
+}
+
+/* RODAPÉ GERAL */
+.site-footer {
+    background-color: #122a20; /* Um verde bem escuro, quase preto, muito elegante */
+    color: #e2e8f0;
+    padding: 40px 20px 20px 20px;
+    font-family: 'Segoe UI', sans-serif;
+    margin-top: 60px;
+}
+
+/* ÁREA DA NEWSLETTER (LADO A LADO) */
+.footer-newsletter {
+    max-width: 1100px;
+    margin: 0 auto 30px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.newsletter-text h3 {
+    color: #ffffff;
+    font-size: 20px;
+    margin: 0 0 5px 0;
+}
+
+.newsletter-text p {
+    color: #a0aec0;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* FORMULÁRIO ALINHADO */
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-group i {
+    position: absolute;
+    left: 12px;
+    color: #718096;
+    font-size: 14px;
+}
+
+.input-group input {
+    background-color: #1b4332;
+    border: 1px solid #2d3748;
+    border-radius: 6px;
+    padding: 10px 12px 10px 35px;
+    color: #ffffff;
+    font-size: 14px;
+    width: 240px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    border-color: #a6266d; /* Detalhe em rosa/vinho ao focar */
+}
+
+.newsletter-form button {
+    background-color: #a6266d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.newsletter-form button:hover {
+    background-color: #bd3282;
+}
+
+/* DIVISOR */
+.footer-divider {
+    border: 0;
+    border-top: 1px solid #1b4332;
+    max-width: 1100px;
+    margin: 0 auto 25px auto;
+}
+
+/* PARTE INFERIOR DO RODAPÉ */
+.footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-info h4 {
+    color: #ffffff;
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.footer-info p {
+    color: #a0aec0;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* LINKS RÁPIDOS MINIMALISTAS */
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #a0aec0;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+/* COPYRIGHT BEM DISCRETO */
+.footer-copyright {
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid #1b4332;
+    padding-top: 15px;
+}
+
+.footer-copyright p {
+    color: #718096;
+    font-size: 12px;
+    margin: 0;
+}
+/* REGRA PARA CONSERTAR O TAMANHO DA LOGO DO TOPO */
+.logo img, .navbar img, header img {
+    width: 60px;          /* Define a largura máxima ideal para o brasão */
+    height: 60px;         /* Mantém a altura proporcional */
+    object-fit: contain;  /* Garante que a imagem não fique distorcida */
+    vertical-align: middle;
+}
+/* PÁGINA DE DESTAQUES */
+.destaques-body {
+    background-color: #f7fafc;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.destaques-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.destaques-header {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.destaques-header h1 {
+    color: #1b4332;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.destaques-header p {
+    color: #718096;
+    font-size: 16px;
+}
+
+/* ESTRUTURA DA GRADE (GRID DE IMAGENS) */
+.galeria-grid {
+    display: grid;
+    /* Cria 4 colunas iguais no computador */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 20px; /* Espaço entre as fotos */
+    padding-bottom: 50px;
+}
+
+/* ITEM DA GALERIA */
+.galeria-item {
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    height: 250px; /* Deixa todas as fotos com a mesma altura */
+    transition: transform 0.3s ease;
+}
+
+.galeria-item:hover {
+    transform: scale(1.03); /* Dá um leve zoom ao passar o mouse */
+}
+
+.galeria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Corta a imagem perfeitamente sem distorcer */
+}
+
+/* LEGENDA QUE APARECE EMBAIXO DA FOTO */
+.galeria-legenda {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(18, 42, 32, 0.85); /* Fundo verde escuro transparente */
+    color: #ffffff;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Ajuste para celulares (muda para 1 ou 2 colunas) */
+@media (max-width: 600px) {
+    .galeria-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+    }
+    .galeria-item {
+        height: 180px;
+    }
+}

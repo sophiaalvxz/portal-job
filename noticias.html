@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notícias - CETI Job De Macedo Brito</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f4f7f5;
+            color: #2d3748;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .news-container {
+            max-width: 1100px;
+            margin: 50px auto 100px auto;
+            padding: 0 4%;
+        }
+
+        .page-title-section {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .page-title-section h1 {
+            color: #1b4332;
+            font-size: 22px;
+            font-weight: 600;
+            margin: 0;
+            letter-spacing: -0.3px;
+        }
+
+        /* LISTA DE POSTS (ESTILO CARDS HORIZONTAIS PROFISSIONAIS) */
+        .posts-list-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .news-feed-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            min-height: 260px;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .news-feed-card:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .card-cover-wrapper {
+            position: relative;
+            overflow: hidden;
+            background-color: #1b4332;
+        }
+
+        .card-cover-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-body-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .post-meta-line {
+            font-size: 12px;
+            color: #718096;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .news-feed-card h2 {
+            color: #1b4332;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            line-height: 1.3;
+        }
+
+        .news-feed-card p {
+            color: #718096;
+            font-size: 14.5px;
+            line-height: 1.6;
+            margin: 0 0 20px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .btn-link-article {
+            color: #a6266d;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            align-self: flex-start;
+        }
+
+        .btn-link-article:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 850px) {
+            .news-feed-card { grid-template-columns: 1fr; }
+            .card-cover-wrapper { height: 200px; }
+            .card-body-content { padding: 20px; }
+            .news-feed-card h2 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-line"></div>
+    <header class="navbar">
+        <div class="logo-area">
+            <div class="school-logo-small"><img src="jobdemacedobritologo_edited.png.png" alt="Logo"></div>
+            <div><span class="nav-logo-title">Job De Macedo Brito</span><span class="nav-logo-subtitle">Ensino Médio</span></div>
+        </div>
+        <a href="index.html" class="btn-nav-login"><i class="fa-solid fa-house"></i> Portal</a>
+    </header>
+
+    <div class="news-container">
+        <div class="page-title-section">
+            <h1>Todos os posts</h1>
+        </div>
+
+        <div class="posts-list-wrapper">
+
+            <article class="news-feed-card">
+                <div class="card-cover-wrapper">
+                    <img src="amostra.png" alt="Amostra Técnica">
+                </div>
+                <div class="card-body-content">
+                    <div class="post-meta-line">
+                        <span>30 de mar.</span>
+                        <span>•</span>
+                        <span>1 min de leitura</span>
+                    </div>
+                    <h2>Estudantes brilham na Primeira Amostra Técnica do CETI Job de Macêdo Brito</h2>
+                    <p>A primeira Mostra Cultural do CETI Job de Macêdo Brito foi marcada por diversas apresentações culturais, científicas e educacionais, reunindo alunos e professores em um momento de aprendizado, criatividade e valorização do conhecimento.</p>
+                    <a href="noticia-amostra-tecnica.html" class="btn-link-article">Ler artigo completo <i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i></a>
+                </div>
+            </article>
+
+            <article class="news-feed-card">
+                <div class="card-cover-wrapper">
+                    <img src="romeu.png" alt="Spoiler de Teatro">
+                </div>
+                <div class="card-body-content">
+                    <div class="post-meta-line">
+                        <span>29 de nov. de 2025</span>
+                        <span>•</span>
+                        <span>1 min de leitura</span>
+                    </div>
+                    <h2>ALERTA DE SPOILER DE TIRAR O FÔLEGO: O CETI Job de Macedo Brito Ousa e Revela Três Clássicos Que Vão Chocar os Palcos!</h2>
+                    <p>As próximas montagens do CETI Job de Macedo Brito trarão adaptações de obras atemporais, garantindo que os estudantes possam mergulhar em narrativas ricas e desafiadoras. Anotem na agenda (e preparem o coração!).</p>
+                    <a href="noticia-spoiler-teatro.html" class="btn-link-article">Ler artigo completo <i class="fa-solid fa-chevron-right" style="font-size: 10px;"></i></a>
+                </div>
+            </article>
+
+        </div>
+    </div>
+
+</body>
+</html>
