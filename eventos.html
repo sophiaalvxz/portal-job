@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos Escolares - CETI Job De Macedo Brito</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .eventos-wrapper {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        /* Barra de Navegação Topo (Com Botão Voltar e Botão Sair) */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .btn-voltar {
+            color: #1b4332;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .btn-voltar:hover {
+            color: #2d6a4f;
+        }
+
+        .btn-sair {
+            color: #e53e3e;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-sair:hover {
+            background-color: #fff5f5;
+            color: #c53030;
+        }
+
+        /* Cabeçalho Principal */
+        .eventos-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .eventos-header h1 {
+            color: #1b4332;
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .eventos-header p {
+            color: #64748b;
+            font-size: 15px;
+            margin: 0;
+        }
+
+        /* Cards de Eventos */
+        .eventos-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .evento-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .evento-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background-color: #1b4332;
+        }
+
+        .evento-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .evento-detalhes-principais {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .evento-tag {
+            display: inline-block;
+            background-color: #e2e8f0;
+            color: #475569;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .evento-titulo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0 0 10px 0;
+        }
+
+        .evento-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .evento-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .evento-meta-item i {
+            color: #2d6a4f;
+        }
+
+        .btn-mais-info {
+            background-color: #1b4332;
+            color: #ffffff;
+            border: none;
+            padding: 12px 22px;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .btn-mais-info:hover {
+            background-color: #2d6a4f;
+            box-shadow: 0 4px 12px rgba(45, 106, 79, 0.3);
+        }
+
+        /* Modal Flutuante para Mais Informações */
+        .modal-evento {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-conteudo {
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 16px;
+            max-width: 520px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            animation: modalFade 0.25s ease-out;
+        }
+
+        @keyframes modalFade {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .fechar-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 22px;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .fechar-modal:hover {
+            color: #1e293b;
+        }
+
+        .modal-titulo {
+            color: #1b4332;
+            margin: 0 0 16px 0;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .modal-info-linha {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #475569;
+        }
+
+        .modal-info-linha i {
+            color: #2d6a4f;
+            width: 16px;
+        }
+
+        .modal-descricao {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #f1f5f9;
+            color: #334155;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="eventos-wrapper">
+        <!-- Topo com Navegação e Aba de Sair -->
+        <div class="top-bar">
+            <a href="index.html" class="btn-voltar">
+                <i class="fa-solid fa-arrow-left"></i> Voltar para o Início
+            </a>
+            <a href="#" class="btn-sair" onclick="fazerLogout(event)">
+                <i class="fa-solid fa-right-from-bracket"></i> Sair
+            </a>
+        </div>
+
+        <header class="eventos-header">
+            <h1>Eventos Escolares</h1>
+            <p>Fique por dentro das próximas atividades e datas importantes da nossa escola.</p>
+        </header>
+
+        <div class="eventos-grid">
+            <div class="evento-card">
+                <div class="evento-detalhes-principais">
+                    <span class="evento-tag">Esportes & Jogos</span>
+                    <h2 class="evento-titulo">Torneio de Tabuleiro (Xadrez, Dama e Ping Pong)</h2>
+                    <div class="evento-meta">
+                        <div class="evento-meta-item">
+                            <i class="fa-regular fa-calendar"></i> 12/08/2026
+                        </div>
+                        <div class="evento-meta-item">
+                            <i class="fa-solid fa-location-dot"></i>  CETI Job de Macêdo Brito
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-mais-info" onclick="abrirModal('Torneio de Tabuleiro (Xadrez, Dama e Ping Pong)', 'A definir', 'Cocal de Telha', 'Esportes & Jogos', 'Torneio esportivo e recreativo reunindo estudantes para disputas de xadrez, dama e tênis de mesa (ping pong). As inscrições serão abertas na coordenação.')">
+                    Mais Info <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="evento-card">
+                <div class="evento-detalhes-principais">
+                    <span class="evento-tag">Atletismo</span>
+                    <h2 class="evento-titulo">Corrida na Escola</h2>
+                    <div class="evento-meta">
+                        <div class="evento-meta-item">
+                            <i class="fa-regular fa-calendar"></i> A definir
+                        </div>
+                        <div class="evento-meta-item">
+                            <i class="fa-solid fa-location-dot"></i> CETI Job de Macêdo Brito
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-mais-info" onclick="abrirModal('Corrida na Escola', 'A definir', 'CETI Job de Macêdo Brito', 'Atletismo', 'Evento voltado para a integração da comunidade escolar e incentivo à prática de atividades físicas. Haverá entrega de medalhas por categoria.')">
+                    Mais Info <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="evento-card">
+                <div class="evento-detalhes-principais">
+                    <span class="evento-tag">Campeonato</span>
+                    <h2 class="evento-titulo">Interclasse</h2>
+                    <div class="evento-meta">
+                        <div class="evento-meta-item">
+                            <i class="fa-regular fa-calendar"></i> 21/08/2026
+                        </div>
+                        <div class="evento-meta-item">
+                            <i class="fa-solid fa-location-dot"></i> Escola Municipal Costa e Silva
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-mais-info" onclick="abrirModal('Interclasse', 'A definir', 'Escola Municipal Costa e Silva', 'Campeonato', 'Tradicional competição esportiva entre turmas, contemplando modalidades como futsal e voleibol. Consulte a tabela de jogos com os representantes de turma.')">
+                    Mais Info <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Informações -->
+    <div id="modalEvento" class="modal-evento" onclick="fecharModalFundo(event)">
+        <div class="modal-conteudo">
+            <span class="fechar-modal" onclick="fecharModal()"><i class="fa-solid fa-xmark"></i></span>
+            <span id="modalCategoria" class="evento-tag"></span>
+            <h3 id="modalTitulo" class="modal-titulo"></h3>
+            
+            <div class="modal-info-linha">
+                <i class="fa-regular fa-calendar"></i> 
+                <strong>Data e Horário:</strong> <span id="modalData"></span>
+            </div>
+            <div class="modal-info-linha">
+                <i class="fa-solid fa-location-dot"></i> 
+                <strong>Local:</strong> <span id="modalLocal"></span>
+            </div>
+
+            <div id="modalDescricao" class="modal-descricao"></div>
+        </div>
+    </div>
+
+    <script>
+        // Função para abrir modal de informações
+        function abrirModal(titulo, data, local, categoria, descricao) {
+            document.getElementById('modalTitulo').innerText = titulo;
+            document.getElementById('modalData').innerText = data;
+            document.getElementById('modalLocal').innerText = local;
+            document.getElementById('modalCategoria').innerText = categoria;
+            document.getElementById('modalDescricao').innerText = descricao;
+            document.getElementById('modalEvento').style.display = 'flex';
+        }
+
+        // Função para fechar modal
+        function fecharModal() {
+            document.getElementById('modalEvento').style.display = 'none';
+        }
+
+        function fecharModalFundo(e) {
+            if (e.target.id === 'modalEvento') {
+                fecharModal();
+            }
+        }
+
+        // Função para Logout / Sair
+        function fazerLogout(event) {
+            event.preventDefault();
+            if (confirm("Tem certeza de que deseja sair?")) {
+                localStorage.clear();
+                sessionStorage.clear();
+                window.location.href = "index.html";
+            }
+        }
+    </script>
+</body>
+</html>

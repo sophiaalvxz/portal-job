@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disciplinas - CETI Job De Macedo Brito</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .section-header-wix {
+            text-align: center;
+            padding: 60px 20px 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-header-wix h1 {
+            color: #1b4332; /* Verde Escuro */
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .section-header-wix p {
+            color: #7a7a7a;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* CONTAINER DO MOSAICO DE DISCIPLINAS */
+        .disciplinas-mosaic {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* Cada linha ou bloco do grid */
+        .mosaic-row {
+            display: flex;
+            width: 100%;
+            min-height: 400px;
+        }
+
+        .mosaic-box {
+            flex: 1;
+            width: 25%; /* 4 blocos por linha cheia */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 3%;
+            box-sizing: border-box;
+        }
+
+        .mosaic-box.image-box {
+            padding: 0;
+        }
+
+        .mosaic-box.image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Estilo Bloco Branco (Química, Ciências, Cultura, Ed. Física) */
+        .mosaic-box.white-bg {
+            background-color: #ffffff;
+            color: #333333;
+        }
+
+        .mosaic-box.white-bg h3 {
+            color: #1b4332;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .mosaic-box.white-bg p {
+            color: #666666;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .mosaic-box.white-bg .btn-saiba {
+            background-color: #1b4332;
+            color: #ffffff;
+        }
+
+        /* Estilo Bloco Verde (Matemática, Redação) */
+        .mosaic-box.green-bg {
+            background-color: #1b4332;
+            color: #ffffff;
+        }
+
+        .mosaic-box.green-bg h3 {
+            color: #ffffff;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .mosaic-box.green-bg p {
+            color: #e0e0e0;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .mosaic-box.green-bg .btn-saiba {
+            background-color: #ffffff;
+            color: #1b4332;
+        }
+
+        /* Botão Padrão Saiba Mais */
+        .btn-saiba {
+            align-self: flex-start;
+            padding: 10px 24px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .btn-saiba:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Botão Voltar ao Topo Flutuante */
+        #btnTopo {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #a6266d;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* RESPONSIVIDADE PARA CELULARES */
+        @media (max-width: 1024px) {
+            .mosaic-row { flex-wrap: wrap; min-height: auto; }
+            .mosaic-box { width: 50%; min-height: 350px; }
+        }
+
+        @media (max-width: 768px) {
+            .mosaic-box { width: 100%; min-height: auto; padding: 40px 20px; }
+            .mosaic-box.image-box { height: 280px; }
+            .section-header-wix h1 { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-line"></div>
+    
+    <header class="navbar">
+        <div class="logo-area">
+            <div class="school-logo-small">
+                <img src="jobdemacedobritologo_edited.png.png" alt="Logo">
+            </div>
+            <div>
+                <span class="nav-logo-title">Job De Macedo Brito</span>
+                <span class="nav-logo-subtitle">Ensino Médio</span>
+            </div>
+        </div>
+        <a href="index.html" class="btn-nav-login"><i class="fa-solid fa-arrow-left"></i> Voltar ao Portal</a>
+    </header>
+
+    <section class="section-header-wix">
+        <h1>Disciplinas</h1>
+        <p>O CETI Job de Macêdo Brito oferece uma grade curricular completa, com disciplinas que desenvolvem competências intelectuais, sociais e profissionais. As aulas são ministradas por professores qualificados e abrangem as áreas de Linguagens, Matemática, Ciências da Natureza, Ciências Humanas e Formação Técnica.</p>
+    </section>
+
+    <div class="disciplinas-mosaic">
+        
+        <div class="mosaic-row">
+            <div class="mosaic-box white-bg">
+                <h3>Química</h3>
+                <p>A disciplina de Química explora a matéria e suas transformações de forma prática e dinâmica. Com experimentos divertidos e conteúdos extensivos, os alunos entendem fenômenos do cotidiano e desenvolvem o pensamento crítico e científico.</p>
+                <a href="quimica.html" class="btn-saiba">Saber mais</a>
+            </div>
+            <div class="mosaic-box image-box">
+                <img src="experimento3noitte.png.jpg" alt="Aula de Química">
+            </div>
+            <div class="mosaic-box white-bg">
+                <h3>Ciências</h3>
+                <p>Explora os fenômenos naturais como biologia, química e física. A disciplina desenvolve o pensamento crítico e a compreensão da importância da ciência no dia a dia e na preservação do meio ambiente.</p>
+                <a href="ciencias.html" class="btn-saiba">Saber mais</a>
+            </div>
+            <div class="mosaic-box image-box">
+                <img src="livia.png.jpg" alt="Uso de Microscópio">
+            </div>
+        </div>
+
+        <div class="mosaic-row">
+            <div class="mosaic-box image-box">
+                <img src="question.png.jpg" alt="Aluno resolvendo matemática">
+            </div>
+            <div class="mosaic-box green-bg">
+                <h3>Matemática</h3>
+                <p>Desenvolve o raciocínio lógico, o pensamento analítico e a resolução de problemas. A disciplina é fundamental para entender o mundo ao nosso redor e para diversas áreas do conhecimento, além de preparar para o mercado de trabalho e estudos futuros.</p>
+                <a href="matematica.html" class="btn-saiba">Saiba mais</a>
+            </div>
+            <div class="mosaic-box image-box">
+                <img src="reda.png.jfif" alt="Estudo de Redação">
+            </div>
+            <div class="mosaic-box green-bg">
+                <h3>Redação</h3>
+                <p>Disciplina que desenvolve a escrita, ensinando a organizar ideias, construir argumentos e produzir textos claros, coerentes e bem estruturados.</p>
+                <a href="redacao.html" class="btn-saiba">Saber mais</a>
+            </div>
+        </div>
+
+        <div class="mosaic-row">
+            <div class="mosaic-box white-bg">
+                <h3>Cultura e arte</h3>
+                <p>Cultura e arte estimulam a criatividade, a expressão pessoal e o conhecimento das diversas manifestações culturais, valorizando a identidade e a diversidade.</p>
+                <a href="cultura-arte.html" class="btn-saiba">Saber mais</a>
+            </div>
+            <div class="mosaic-box image-box">
+                <img src="culura.png.jpeg" alt="Oficina de Artes">
+            </div>
+            <div class="mosaic-box white-bg">
+                <h3>Educação física</h3>
+                <p>Educação física promove a saúde, o bem-estar e o trabalho em equipe por meio de atividades esportivas e exercícios físicos.</p>
+                <a href="educacao-fisica.html" class="btn-saiba">Saber mais</a>
+            </div>
+            <div class="mosaic-box image-box">
+                <img src="edu.png.jpeg" alt="Prática de Esportes">
+            </div>
+        </div>
+
+    </div>
+
+    <button onclick="voltarAoTopo()" id="btnTopo" title="Voltar ao início"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <script>
+        const meuBotao = document.getElementById("btnTopo");
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                meuBotao.style.display = "block";
+            } else {
+                meuBotao.style.display = "none";
+            }
+        };
+        function voltarAoTopo() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>

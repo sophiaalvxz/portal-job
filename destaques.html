@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destaques Acadêmicos - CETI Job De Macedo Brito</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Estilos dos Indicadores de Desempenho (Gráficos) */
+        .destaques-stats-container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 30px 20px;
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .stats-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .stats-header h2 {
+            color: #1b4332;
+            font-size: 26px;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+        }
+
+        .stats-header p {
+            color: #718096;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .stats-pizza-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .pizza-card {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e0;
+            border-radius: 10px;
+            padding: 25px 15px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .pizza-card:hover {
+            transform: translateY(-5px);
+            background-color: #ffffff;
+            border-color: #1b4332;
+            box-shadow: 0 8px 25px rgba(27, 67, 50, 0.12);
+        }
+
+        .pizza-card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .pizza-chart {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .pizza-card:hover .pizza-chart {
+            transform: scale(1.06);
+        }
+
+        .pizza-chart::before {
+            content: "";
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            background-color: #ffffff;
+            border-radius: 50%;
+        }
+
+        .pizza-percentage {
+            position: relative;
+            font-size: 22px;
+            font-weight: 800;
+            color: #1b4332;
+            z-index: 2;
+        }
+
+        .pizza-card .tooltip-balao {
+            visibility: hidden;
+            opacity: 0;
+            background-color: #1a202c;
+            color: #ffffff;
+            text-align: center;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-5px);
+            transition: all 0.25s ease-in-out;
+            white-space: nowrap;
+            pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        .pizza-card .tooltip-balao::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #1a202c transparent transparent transparent;
+        }
+
+        .pizza-card:hover .tooltip-balao {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-12px);
+        }
+
+        .chart-obmep { background: conic-gradient(#1b4332 0% 95%, #e2e8f0 95% 100%); }
+        .chart-oba { background: conic-gradient(#2d6a4f 0% 88%, #e2e8f0 88% 100%); }
+        .chart-enem { background: conic-gradient(#40916c 0% 92%, #e2e8f0 92% 100%); }
+        .chart-frequencia { background: conic-gradient(#52b788 0% 85%, #e2e8f0 85% 100%); }
+
+        /* Estilos da Janela Flutuante para Ampliar Fotos (Lightbox) */
+        .zoom-foto {
+            cursor: zoom-in;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .zoom-foto:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .modal-ampliar {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .conteudo-modal {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.6);
+            animation: zoomAnimation 0.3s ease;
+        }
+
+        @keyframes zoomAnimation {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .fechar-ampliar {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .fechar-ampliar:hover {
+            color: #52b788;
+        }
+    </style>
+</head>
+<body class="destaques-body">
+
+    <div class="destaques-container">
+        <a href="index.html" class="btn-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar para o Início</a>
+
+        <header class="destaques-header">
+            <h1>Destaques Acadêmicos</h1>
+            <p>Celebração do esforço, dedicação e conquistas dos nossos alunos e comunidade escolar.</p>
+        </header>
+
+        <section class="galeria-grid">
+            <div class="galeria-item">
+                <img src="3noite.png.jpg" alt="Destaque Acadêmico 1" class="zoom-foto">
+                <div class="galeria-legenda"></div>
+            </div>
+            <div class="galeria-item">
+                <img src="3tarde.png.jpg" alt="Destaque Acadêmico 2" class="zoom-foto">
+                <div class="galeria-legenda"></div>
+            </div>
+            <div class="galeria-item">
+                <img src="campeoesteresina.png.png" alt="Destaque Acadêmico 3" class="zoom-foto">
+                <div class="galeria-legenda"></div>
+            </div>
+            <div class="galeria-item">
+                <img src="esperimentos.png.jpg" alt="Destaque Acadêmico 4" class="zoom-foto">
+                <div class="galeria-legenda"></div>
+            </div>
+
+            <div class="galeria-item">
+                <img src="flavi.png.jpg" alt="Destaque Acadêmico 5" class="zoom-foto">
+                <div class="galeria-legenda"></div>
+            </div>
+            <div class="galeria-item">
+                <img src="haha.png.jpg" alt="Destaque Acadêmico 6" class="zoom-foto">
+                <div class="galeria-legenda"></div>
+            </div>
+            <div class="galeria-item">
+                <img src="hanna.png.jpg" alt="Destaque Acadêmico 7" class="zoom-foto">
+                <div class="galeria-legenda"></div>
+            </div>
+            <div class="galeria-item">
+                <img src="isa.png.jpg" alt="Destaque Acadêmico 8" class="zoom-foto">
+                <div class="galeria-legenda"></div>
+            </div>
+            <div class="galeria-item">
+                <img src="hannaefernando.png.jpg" alt="Destaque Acadêmico 9" class="zoom-foto">
+                <div class="galeria-legenda"></div>
+            </div>
+
+            <div class="galeria-item">
+                <img src="joaquim.png.png" alt="Destaque Acadêmico 10" class="zoom-foto">
+                <div class="galeria-legenda"></div>
+            </div>
+        
+            <div class="galeria-item">
+                <img src="piripiru.png.png" alt="Destaque Acadêmico 12" class="zoom-foto">
+                <div class="galeria-legenda"></div>
+            </div>
+            <div class="galeria-item">
+                <img src="sei.png.jpg" alt="Destaque Acadêmico 13" class="zoom-foto">
+                <div class="galeria-legenda"></div>
+            </div>
+
+            <div class="galeria-item">
+                <img src="vencedoresrio.png.jpg" alt="Destaque Acadêmico 14" class="zoom-foto">
+                <div class="galeria-legenda"></div>
+            </div>
+            <div class="galeria-item">
+                <img src="sophia.png.jpg" alt="Destaque Acadêmico 15" class="zoom-foto">
+                <div class="galeria-legenda"></div>
+            </div>
+        </section>
+
+        <!-- Indicadores de Desempenho Escolar -->
+        <section class="destaques-stats-container">
+            <div class="stats-header">
+                <h2>Indicadores de Desempenho Escolar</h2>
+                <p>Acompanhe os resultados e conquistas dos nossos alunos do CETI Job de Macêdo Brito.</p>
+            </div>
+
+            <div class="stats-pizza-grid">
+                <div class="pizza-card">
+                    <div class="tooltip-balao">Aprovações OBMEP: 95%</div>
+                    <div class="pizza-card-title">Participação na OBMEP</div>
+                    <div class="pizza-chart chart-obmep">
+                        <span class="pizza-percentage">95%</span>
+                    </div>
+                </div>
+
+                <div class="pizza-card">
+                    <div class="tooltip-balao">Desempenho OBA: 88%</div>
+                    <div class="pizza-card-title">Olimpíada de Astronomia (OBA)</div>
+                    <div class="pizza-chart chart-oba">
+                        <span class="pizza-percentage">88%</span>
+                    </div>
+                </div>
+
+                <div class="pizza-card">
+                    <div class="tooltip-balao">Aprovação ENEM: 92%</div>
+                    <div class="pizza-card-title">Aprovações no ENEM</div>
+                    <div class="pizza-chart chart-enem">
+                        <span class="pizza-percentage">92%</span>
+                    </div>
+                </div>
+
+                <div class="pizza-card">
+                    <div class="tooltip-balao">Assiduidade: 85%</div>
+                    <div class="pizza-card-title">Frequência Escolar Geral</div>
+                    <div class="pizza-chart chart-frequencia">
+                        <span class="pizza-percentage">85%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal para exibição das fotos ampliadas -->
+    <div id="imagemModal" class="modal-ampliar" onclick="fecharImagem()">
+        <span class="fechar-ampliar" onclick="fecharImagem()">&times;</span>
+        <img id="imagemAmpliada" class="conteudo-modal" alt="Imagem Ampliada">
+    </div>
+
+    <script>
+        function ampliarImagem(img) {
+            const modal = document.getElementById('imagemModal');
+            const imgAmpliada = document.getElementById('imagemAmpliada');
+            modal.style.display = 'flex';
+            imgAmpliada.src = img.src;
+            imgAmpliada.alt = img.alt;
+        }
+
+        function fecharImagem() {
+            document.getElementById('imagemModal').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const imagens = document.querySelectorAll('.zoom-foto');
+            imagens.forEach(img => {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    ampliarImagem(img);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
